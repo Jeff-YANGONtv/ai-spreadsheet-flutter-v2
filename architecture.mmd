@@ -1,0 +1,32 @@
+graph TD
+    subgraph Presentation_Layer
+        HS[HomeScreen] --> ST[SheetTab]
+        HS --> AT[AddTab]
+        HS --> CT[ChatTab]
+        CT --> AAC[AiAnalysisCard]
+    end
+
+    subgraph Logic_Layer
+        SP[SheetProvider]
+        RP[ResourceProvider]
+        CP[ChatProvider]
+    end
+
+    subgraph Data_Layer
+        SS[SupabaseService]
+        GS[GeminiService]
+        SM[SheetModel]
+        RM[ResourceModel]
+    end
+
+    ST & CT --> SP
+    AT --> RP
+    CT --> CP
+    CP --> SP
+    
+    SP --> SS
+    SP --> GS
+    CP --> GS
+    
+    SS --> SM
+    RP --> RM
